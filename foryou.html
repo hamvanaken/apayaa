@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Animation dengan Orang Kasih Bunga</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #ffe6eb;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    /* Love utama */
+    svg.main-love {
+        width: 250px;
+        height: 250px;
+        fill: #e63946;
+        opacity: 0;
+        animation: fadeZoomBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes fadeZoomBounce {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        10% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        30% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-30px) scale(1.1);
+        }
+        70% {
+            transform: translateY(0) scale(1);
+        }
+        100% {
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Teks semangat */
+    h1 {
+        margin-top: 10px;
+        font-size: 36px;
+        color: #d62828;
+        opacity: 0;
+        animation: fadeInText 2s ease-in-out forwards;
+        animation-delay: 1s;
+    }
+
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Love berjatuhan */
+    .falling-love {
+        position: fixed;
+        top: -50px;
+        font-size: 24px;
+        color: #e63946;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+
+    /* Orang detail */
+    .person-container {
+        position: absolute;
+        bottom: 0;
+        animation: walkIn 4s ease-in-out forwards;
+        animation-delay: 2s;
+        opacity: 0;
+    }
+
+    @keyframes walkIn {
+        0% {
+            opacity: 0;
+            transform: translateX(-400px);
+        }
+        50% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        80% {
+            transform: translateX(0) translateY(0);
+        }
+        100% {
+            transform: translateX(0) translateY(-20px); /* angkat bunga */
+        }
+    }
+
+    svg.person {
+        width: 180px;
+        height: auto;
+    }
+</style>
+</head>
+<body>
+    <!-- Love utama -->
+    <svg class="main-love" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+        4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 
+        14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+        6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <h1>Semangattt Yaa ❤️</h1>
+
+    <!-- Orang lebih detail -->
+    <div class="person-container">
+        <svg class="person" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 100">
+            <!-- Kepala -->
+            <circle cx="32" cy="12" r="8" fill="#f4a261"/>
+            <!-- Mata -->
+            <circle cx="29" cy="11" r="1" fill="black"/>
+            <circle cx="35" cy="11" r="1" fill="black"/>
+            <!-- Senyum -->
+            <path d="M28 14 Q32 18 36 14" stroke="black" fill="transparent" stroke-width="1"/>
+            <!-- Badan -->
+            <rect x="24" y="20" width="16" height="24" rx="4" fill="#2a9d8f"/>
+            <!-- Celana -->
+            <rect x="24" y="44" width="7" height="18" fill="#264653"/>
+            <rect x="33" y="44" width="7" height="18" fill="#264653"/>
+            <!-- Tangan kiri -->
+            <rect x="16" y="22" width="8" height="4" rx="2" fill="#f4a261"/>
+            <!-- Tangan kanan pegang bunga -->
+            <rect x="40" y="22" width="10" height="4" rx="2" fill="#f4a261"/>
+            <!-- Bunga detail -->
+            <circle cx="54" cy="20" r="4" fill="red"/>
+            <circle cx="57" cy="17" r="3" fill="pink"/>
+            <circle cx="51" cy="17" r="3" fill="pink"/>
+            <circle cx="54" cy="14" r="3" fill="pink"/>
+            <rect x="53" y="24" width="2" height="10" fill="green"/>
+            <rect x="50" y="28" width="2" height="6" fill="green" transform="rotate(-30 51 30)"/>
+            <rect x="54" y="28" width="2" height="6" fill="green" transform="rotate(30 55 30)"/>
+        </svg>
+    </div>
+
+    <!-- Script untuk hujan love -->
+    <script>
+        function createFallingLove() {
+            const love = document.createElement('div');
+            love.classList.add('falling-love');
+            love.innerHTML = '❤️';
+
+            love.style.left = Math.random() * 100 + 'vw';
+            love.style.animationDuration = (Math.random() * 3 + 3) + 's'; // 3-6 detik
+            love.style.fontSize = (Math.random() * 20 + 15) + 'px'; // 15-35px
+
+            document.body.appendChild(love);
+
+            setTimeout(() => {
+                love.remove();
+            }, 6000);
+        }
+
+        setInterval(createFallingLove, 300);
+    </script>
+</body>
+</html>
